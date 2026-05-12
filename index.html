@@ -1,679 +1,149 @@
 <!doctype html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>StaffWatch | ICS 203 Generator</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link rel="shortcut icon" href="favicon.png">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  >
-
-  <link rel="stylesheet" href="style.css">
-
-  <!-- DOCX Export Libraries -->
-  <script src="https://unpkg.com/pizzip@3.1.5/dist/pizzip.js"></script>
-
-  <script src="https://unpkg.com/docxtemplater@3.37.11/build/docxtemplater.js"></script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Assignment Roster | Roman's Toolbox</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-
-<main class="app-shell">
-
-<header class="page-header">
-
-<div class="page-header__inner">
-
-<div class="page-header__content">
-
-<p class="eyebrow">
-STAFFWATCH TOOLSET
-</p>
-
-<h1>
-ICS 203 Generator
-</h1>
-
-<p class="lede">
-Generate Organization Assignment Lists (ICS 203) using the official template.
-This tool exports a completed DOCX file ready for operational use.
-</p>
-
-</div>
-
-<nav class="tool-switcher">
-
-<button
-type="button"
-class="active"
->
-ICS 203 Generator
-</button>
-
-<button
-type="button"
-onclick="window.open('https://staffwatch.netlify.app/', '_blank')"
->
-StaffWatch Home
-</button>
-
-</nav>
-
-</div>
-
-</header>
-
-<section class="layout">
-
-<!-- LEFT COLUMN -->
-
-<div class="controls-column">
-
-<!-- GUIDANCE -->
-
-<section class="card guidance-card">
-
-<div class="section-heading">
-<h2>Tool Guidance</h2>
-
-<p>
-Complete the fields below to populate the official ICS 203 template.
-</p>
-</div>
-
-<div class="callout callout--warning">
-
-<h3>Before Exporting</h3>
-
-<ul>
-<li>Verify all operational positions and assignments.</li>
-<li>Ensure command staff information is accurate.</li>
-<li>Review the generated DOCX before distribution.</li>
-</ul>
-
-</div>
-
-</section>
-
-<!-- FORM -->
-
-<section class="card form-card">
-
-<!-- INCIDENT INFO -->
-
-<section class="form-section">
-
-<div class="section-heading">
-<h2>Incident Information</h2>
-<p>Operational period and incident metadata.</p>
-</div>
-
-<div class="grid">
-
-<div class="form-group">
-<label for="incidentName">Incident Name</label>
-<input type="text" id="incidentName">
-</div>
-
-<div class="form-group">
-<label for="dateFrom">Date From</label>
-<input type="date" id="dateFrom">
-</div>
-
-<div class="form-group">
-<label for="dateTo">Date To</label>
-<input type="date" id="dateTo">
-</div>
-
-<div class="form-group">
-<label for="timeFrom">Time From</label>
-<input type="time" id="timeFrom">
-</div>
-
-<div class="form-group">
-<label for="timeTo">Time To</label>
-<input type="time" id="timeTo">
-</div>
-
-</div>
-
-</section>
-
-<!-- COMMAND STAFF -->
-
-<section class="form-section">
-
-<div class="section-heading">
-<h2>Incident Commander & Command Staff</h2>
-<p>Primary command leadership positions.</p>
-</div>
-
-<div class="grid">
-
-<div class="form-group">
-<label for="incidentCommander">Incident Commander</label>
-<input type="text" id="incidentCommander">
-</div>
-
-<div class="form-group">
-<label for="deputyIncidentCommander">Deputy Incident Commander</label>
-<input type="text" id="deputyIncidentCommander">
-</div>
-
-<div class="form-group">
-<label for="safetyOfficer">Safety Officer</label>
-<input type="text" id="safetyOfficer">
-</div>
-
-<div class="form-group">
-<label for="publicInformationOfficer">Public Information Officer</label>
-<input type="text" id="publicInformationOfficer">
-</div>
-
-<div class="form-group">
-<label for="liaisonOfficer">Liaison Officer</label>
-<input type="text" id="liaisonOfficer">
-</div>
-
-</div>
-
-</section>
-
-<!-- AGENCY REPS -->
-
-<section class="form-section">
-
-<div class="section-heading">
-<h2>Agency Representatives</h2>
-<p>Participating agencies and assigned representatives.</p>
-</div>
-
-<div class="grid">
-
-<div class="form-group">
-<label for="agency1">Agency 1</label>
-<input type="text" id="agency1">
-</div>
-
-<div class="form-group">
-<label for="agencyRep1">Representative 1</label>
-<input type="text" id="agencyRep1">
-</div>
-
-<div class="form-group">
-<label for="agency2">Agency 2</label>
-<input type="text" id="agency2">
-</div>
-
-<div class="form-group">
-<label for="agencyRep2">Representative 2</label>
-<input type="text" id="agencyRep2">
-</div>
-
-<div class="form-group">
-<label for="agency3">Agency 3</label>
-<input type="text" id="agency3">
-</div>
-
-<div class="form-group">
-<label for="agencyRep3">Representative 3</label>
-<input type="text" id="agencyRep3">
-</div>
-
-<div class="form-group">
-<label for="agency4">Agency 4</label>
-<input type="text" id="agency4">
-</div>
-
-<div class="form-group">
-<label for="agencyRep4">Representative 4</label>
-<input type="text" id="agencyRep4">
-</div>
-
-<div class="form-group">
-<label for="agency5">Agency 5</label>
-<input type="text" id="agency5">
-</div>
-
-<div class="form-group">
-<label for="agencyRep5">Representative 5</label>
-<input type="text" id="agencyRep5">
-</div>
-
-</div>
-
-</section>
-
-<!-- SECTION CHIEFS -->
-
-<section class="form-section">
-
-<div class="section-heading">
-<h2>Section Chiefs</h2>
-<p>ICS organizational section leadership.</p>
-</div>
-
-<div class="grid">
-
-<div class="form-group">
-<label for="operationsChief">Operations Chief</label>
-<input type="text" id="operationsChief">
-</div>
-
-<div class="form-group">
-<label for="planningChief">Planning Chief</label>
-<input type="text" id="planningChief">
-</div>
-
-<div class="form-group">
-<label for="logisticsChief">Logistics Chief</label>
-<input type="text" id="logisticsChief">
-</div>
-
-<div class="form-group">
-<label for="financeChief">Finance Chief</label>
-<input type="text" id="financeChief">
-</div>
-
-</div>
-
-</section>
-
-<!-- PLANNING -->
-
-<section class="form-section">
-
-<div class="section-heading">
-<h2>Planning Section</h2>
-</div>
-
-<div class="grid">
-
-<div class="form-group">
-<label for="planningDeputy">Deputy</label>
-<input type="text" id="planningDeputy">
-</div>
-
-<div class="form-group">
-<label for="resourcesUnit">Resources Unit</label>
-<input type="text" id="resourcesUnit">
-</div>
-
-<div class="form-group">
-<label for="situationUnit">Situation Unit</label>
-<input type="text" id="situationUnit">
-</div>
-
-<div class="form-group">
-<label for="documentationUnit">Documentation Unit</label>
-<input type="text" id="documentationUnit">
-</div>
-
-<div class="form-group">
-<label for="demobilizationUnit">Demobilization Unit</label>
-<input type="text" id="demobilizationUnit">
-</div>
-
-<div class="form-group">
-<label for="technicalSpecialists">Technical Specialists</label>
-<input type="text" id="technicalSpecialists">
-</div>
-
-</div>
-
-</section>
-
-<!-- LOGISTICS -->
-
-<section class="form-section">
-
-<div class="section-heading">
-<h2>Logistics Section</h2>
-</div>
-
-<div class="grid">
-
-<div class="form-group">
-<label for="logisticsDeputy">Deputy</label>
-<input type="text" id="logisticsDeputy">
-</div>
-
-<div class="form-group">
-<label for="supportBranchDirector">Support Branch Director</label>
-<input type="text" id="supportBranchDirector">
-</div>
-
-<div class="form-group">
-<label for="supplyUnit">Supply Unit</label>
-<input type="text" id="supplyUnit">
-</div>
-
-<div class="form-group">
-<label for="facilitiesUnit">Facilities Unit</label>
-<input type="text" id="facilitiesUnit">
-</div>
-
-<div class="form-group">
-<label for="groundSupportUnit">Ground Support Unit</label>
-<input type="text" id="groundSupportUnit">
-</div>
-
-<div class="form-group">
-<label for="serviceBranchDirector">Service Branch Director</label>
-<input type="text" id="serviceBranchDirector">
-</div>
-
-<div class="form-group">
-<label for="communicationsUnit">Communications Unit</label>
-<input type="text" id="communicationsUnit">
-</div>
-
-<div class="form-group">
-<label for="medicalUnit">Medical Unit</label>
-<input type="text" id="medicalUnit">
-</div>
-
-<div class="form-group">
-<label for="foodUnit">Food Unit</label>
-<input type="text" id="foodUnit">
-</div>
-
-</div>
-
-</section>
-
-<!-- OPERATIONS -->
-
-<section class="form-section">
-
-<div class="section-heading">
-<h2>Operations Section</h2>
-</div>
-
-<div class="grid">
-
-<div class="form-group">
-<label for="operationsDeputy">Deputy</label>
-<input type="text" id="operationsDeputy">
-</div>
-
-<div class="form-group">
-<label for="stagingArea">Staging Area</label>
-<input type="text" id="stagingArea">
-</div>
-
-<div class="form-group">
-<label for="branchDirector1">Branch Director 1</label>
-<input type="text" id="branchDirector1">
-</div>
-
-<div class="form-group">
-<label for="branchDeputy1">Branch Deputy 1</label>
-<input type="text" id="branchDeputy1">
-</div>
-
-<div class="form-group">
-<label for="divisionGroup1">Division/Group 1</label>
-<input type="text" id="divisionGroup1">
-</div>
-
-<div class="form-group">
-<label for="divisionGroupSupervisor1">Supervisor 1</label>
-<input type="text" id="divisionGroupSupervisor1">
-</div>
-
-<div class="form-group">
-<label for="divisionGroup2">Division/Group 2</label>
-<input type="text" id="divisionGroup2">
-</div>
-
-<div class="form-group">
-<label for="divisionGroupSupervisor2">Supervisor 2</label>
-<input type="text" id="divisionGroupSupervisor2">
-</div>
-
-<div class="form-group">
-<label for="divisionGroup3">Division/Group 3</label>
-<input type="text" id="divisionGroup3">
-</div>
-
-<div class="form-group">
-<label for="divisionGroupSupervisor3">Supervisor 3</label>
-<input type="text" id="divisionGroupSupervisor3">
-</div>
-
-<div class="form-group">
-<label for="branchDirector2">Branch Director 2</label>
-<input type="text" id="branchDirector2">
-</div>
-
-<div class="form-group">
-<label for="branchDeputy2">Branch Deputy 2</label>
-<input type="text" id="branchDeputy2">
-</div>
-
-<div class="form-group">
-<label for="divisionGroup4">Division/Group 4</label>
-<input type="text" id="divisionGroup4">
-</div>
-
-<div class="form-group">
-<label for="divisionGroupSupervisor4">Supervisor 4</label>
-<input type="text" id="divisionGroupSupervisor4">
-</div>
-
-<div class="form-group">
-<label for="divisionGroup5">Division/Group 5</label>
-<input type="text" id="divisionGroup5">
-</div>
-
-<div class="form-group">
-<label for="divisionGroupSupervisor5">Supervisor 5</label>
-<input type="text" id="divisionGroupSupervisor5">
-</div>
-
-<div class="form-group">
-<label for="airOperationsBranchDirector">
-Air Operations Branch Director
-</label>
-
-<input type="text" id="airOperationsBranchDirector">
-</div>
-
-</div>
-
-</section>
-
-<!-- FINANCE -->
-
-<section class="form-section">
-
-<div class="section-heading">
-<h2>Finance / Administration Section</h2>
-</div>
-
-<div class="grid">
-
-<div class="form-group">
-<label for="financeDeputy">Deputy</label>
-<input type="text" id="financeDeputy">
-</div>
-
-<div class="form-group">
-<label for="timeUnit">Time Unit</label>
-<input type="text" id="timeUnit">
-</div>
-
-<div class="form-group">
-<label for="procurementUnit">Procurement Unit</label>
-<input type="text" id="procurementUnit">
-</div>
-
-<div class="form-group">
-<label for="compClaimsUnit">Compensation / Claims Unit</label>
-<input type="text" id="compClaimsUnit">
-</div>
-
-<div class="form-group">
-<label for="costUnit">Cost Unit</label>
-<input type="text" id="costUnit">
-</div>
-
-</div>
-
-</section>
-
-<!-- PREPARED BY -->
-
-<section class="form-section">
-
-<div class="section-heading">
-<h2>Prepared By</h2>
-</div>
-
-<div class="grid">
-
-<div class="form-group">
-<label for="preparedByName">Name</label>
-<input type="text" id="preparedByName">
-</div>
-
-<div class="form-group">
-<label for="preparedByTitle">Position / Title</label>
-<input type="text" id="preparedByTitle">
-</div>
-
-<div class="form-group">
-<label for="preparedBySignature">Signature</label>
-<input type="text" id="preparedBySignature">
-</div>
-
-<div class="form-group">
-<label for="preparedDateTime">Date / Time</label>
-<input type="text" id="preparedDateTime">
-</div>
-
-</div>
-
-<div class="button-row">
-
-<button id="exportBtn" class="primary">
-Export ICS 203
-</button>
-
-<button id="saveBtn" class="secondary">
-Save Draft
-</button>
-
-<button id="clearBtn" class="danger">
-Clear Form
-</button>
-
-</div>
-
-</section>
-
-</section>
-
-<footer class="page-footer">
-Version 1. StaffWatch ICS Toolset.
-</footer>
-
-</div>
-
-<!-- RIGHT COLUMN -->
-
-<aside class="preview-column">
-
-<div class="preview-sticky">
-
-<section class="card preview-card">
-
-<div class="preview-card__header">
-
-<div class="preview-card__title">
-
-<h2>Export Information</h2>
-
-<p>
-The generator loads <strong>ics203.docx</strong>,
-replaces all placeholders,
-and downloads a completed DOCX file.
-</p>
-
-</div>
-
-</div>
-
-<div class="preview-surface">
-
-<div class="landing-info">
-
-<section class="landing-info__section">
-
-<h3>Template Requirements</h3>
-
-<p>
-Your DOCX template must contain placeholders like:
-</p>
-
-<p>
-[[incidentCommander]]
-[[operationsChief]]
-[[planningChief]]
-[[preparedByName]]
-</p>
-
-</section>
-
-<section class="landing-info__section">
-
-<h3>Save Draft</h3>
-
-<p>
-Drafts are stored locally in your browser.
-No information is transmitted externally.
-</p>
-
-</section>
-
-<section class="landing-info__section">
-
-<h3>Operational Review</h3>
-
-<p>
-Always review the exported ICS 203 prior to operational distribution.
-</p>
-
-</section>
-
-</div>
-
-</div>
-
-</section>
-
-</div>
-
-</aside>
-
-</section>
-
-</main>
-
-<script src="script.js"></script>
-
+  <header class="site-header">
+    <div class="container header-grid">
+      <div>
+        <p class="eyebrow">Roman's Toolbox</p>
+        <h1>Assignment Roster</h1>
+        <p class="lede">Log personnel by name, CAPID, role, and assignment. Build an ICS 203-style organization/loadout record that can be copied, printed, exported, and restored later.</p>
+      </div>
+      <div class="header-actions">
+        <button class="button primary" id="copySummaryBtn" type="button">Copy Summary</button>
+        <button class="button secondary" id="printBtn" type="button">Print / PDF</button>
+        <button class="button secondary" id="exportBtn" type="button">Export JSON</button>
+        <label class="button secondary file-button">Import JSON<input id="importInput" type="file" accept="application/json" /></label>
+        <button class="button secondary" id="clearPageBtn" type="button">Clear Page</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container main-grid">
+    <section class="panel">
+      <div class="panel-heading">
+        <h2>Incident / Mission Info</h2>
+        <p>These fields appear at the top of the generated roster.</p>
+      </div>
+      <form id="incidentForm" class="resource-form">
+        <label>Incident / Mission Name<input id="incidentName" autocomplete="off" placeholder="Mission Base Operations" /></label>
+        <div class="two-column">
+          <label>Mission Number<input id="missionNumber" autocomplete="off" placeholder="25-M-0000" /></label>
+          <label>Operational Period<input id="operationalPeriod" autocomplete="off" placeholder="11 May 2026, 0800-1800" /></label>
+        </div>
+        <div class="two-column">
+          <label>Prepared By<input id="preparedBy" autocomplete="off" /></label>
+          <label>Date / Time Prepared<input id="preparedAt" autocomplete="off" /></label>
+        </div>
+      </form>
+    </section>
+
+    <section class="workspace">
+      <section class="panel">
+        <div class="panel-heading">
+          <h2>Add Person</h2>
+          <p>Create records by name, CAPID, assignment, and ICS-style position.</p>
+        </div>
+        <form id="personForm" class="resource-form">
+          <div class="two-column">
+            <label>Name<input id="personName" required autocomplete="off" placeholder="Jane Smith" /></label>
+            <label>CAPID<input id="capid" required inputmode="numeric" autocomplete="off" placeholder="123456" /></label>
+          </div>
+          <div class="two-column">
+            <label>ICS Section
+              <select id="section">
+                <option>Command Staff</option>
+                <option>Operations Section</option>
+                <option>Planning Section</option>
+                <option>Logistics Section</option>
+                <option>Finance/Admin Section</option>
+                <option>Air Operations</option>
+                <option>Ground Operations</option>
+                <option>Mission Base</option>
+                <option>Other</option>
+              </select>
+            </label>
+            <label>Position / Role<input id="position" required autocomplete="off" placeholder="Ground Branch Director" /></label>
+          </div>
+          <div class="two-column">
+            <label>Assignment / Team<input id="assignment" required autocomplete="off" placeholder="Ground Team 1" /></label>
+            <label>Status
+              <select id="status">
+                <option>Assigned</option>
+                <option>Available</option>
+                <option>Enroute</option>
+                <option>Onscene</option>
+                <option>Released</option>
+                <option>Unavailable</option>
+              </select>
+            </label>
+          </div>
+          <label>Notes<textarea id="notes" placeholder="Phone, qualifications, vehicle, radio call sign, special equipment, etc."></textarea></label>
+          <button class="button primary full-width" type="submit">Add Person</button>
+        </form>
+      </section>
+
+      <section class="panel">
+        <div class="toolbar">
+          <div>
+            <h2>Organization / Loadout</h2>
+            <p><span id="personCount">0 people</span></p>
+          </div>
+          <label class="search-label"><span class="sr-only">Search people</span><input id="searchInput" type="search" placeholder="Search name, CAPID, assignment, role, notes" /></label>
+        </div>
+        <div class="filters" aria-label="Roster filters">
+          <button class="filter active" type="button" data-filter="All">All</button>
+          <button class="filter" type="button" data-filter="Command Staff">Command</button>
+          <button class="filter" type="button" data-filter="Operations Section">Operations</button>
+          <button class="filter" type="button" data-filter="Planning Section">Planning</button>
+          <button class="filter" type="button" data-filter="Logistics Section">Logistics</button>
+          <button class="filter" type="button" data-filter="Finance/Admin Section">Finance/Admin</button>
+        </div>
+        <div id="rosterList" class="resource-list"></div>
+      </section>
+
+      <section class="panel printable-panel" id="ics203Panel">
+        <div class="ics-header">
+          <div>
+            <p class="eyebrow">ICS 203-style</p>
+            <h2>Organization Assignment List</h2>
+          </div>
+          <p class="form-number">ICS 203</p>
+        </div>
+        <div class="ics-meta" id="icsMeta"></div>
+        <section class="chain-panel" aria-label="Operational chain of command">
+          <h3>Operational Chain of Command (ICS 207-style)</h3>
+          <div id="chainOfCommand" class="chain-grid"></div>
+        </section>
+        <div id="icsSections" class="ics-sections"></div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Operational note: this tool saves data in your browser using local storage. Export JSON when you need to preserve or transfer a roster.</p>
+      <p class="version">Version 1. Last updated May 11, 2026.</p>
+    </div>
+  </footer>
+
+  <template id="personCardTemplate">
+    <article class="resource-card">
+      <div>
+        <div class="badges"></div>
+        <h3></h3>
+        <p class="resource-notes"></p>
+        <p class="resource-meta"></p>
+      </div>
+      <div class="resource-actions"></div>
+    </article>
+  </template>
+
+  <script src="script.js"></script>
 </body>
-
 </html>
