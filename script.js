@@ -30,6 +30,7 @@ const els = {
   printBtn: document.getElementById("printBtn"),
   exportBtn: document.getElementById("exportBtn"),
   importInput: document.getElementById("importInput"),
+  clearPageBtn: document.getElementById("clearPageBtn"),
   icsMeta: document.getElementById("icsMeta"),
   icsSections: document.getElementById("icsSections"),
   chainOfCommand: document.getElementById("chainOfCommand")
@@ -70,6 +71,7 @@ function bindEvents() {
   els.printBtn.addEventListener("click", () => window.print());
   els.exportBtn.addEventListener("click", exportJson);
   els.importInput.addEventListener("change", importJson);
+  els.clearPageBtn.addEventListener("click", clearEntirePage);
 }
 
 function hydrateIncidentForm() {
@@ -250,6 +252,24 @@ function updateStatus(id, status) {
 function removePerson(id) {
   people = people.filter(person => person.id !== id);
   savePeople();
+  render();
+}
+
+
+function clearEntirePage() {
+  const confirmed = window.confirm("Clear all people, incident info, and saved local data for this page?");
+  if (!confirmed) return;
+  people = [];
+  incident = {};
+  localStorage.removeItem(STORAGE_KEY);
+  localStorage.removeItem(INCIDENT_KEY);
+  currentFilter = "All";
+  searchQuery = "";
+  els.search.value = "";
+  document.querySelectorAll(".filter").forEach(item => item.classList.toggle("active", item.dataset.filter === "All"));
+  els.form.reset();
+  els.incidentForm.reset();
+  hydrateIncidentForm();
   render();
 }
 
