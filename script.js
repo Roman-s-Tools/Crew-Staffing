@@ -31,8 +31,19 @@ const els = {
   exportBtn: document.getElementById("exportBtn"),
   importInput: document.getElementById("importInput"),
   icsMeta: document.getElementById("icsMeta"),
-  icsSections: document.getElementById("icsSections")
+  icsSections: document.getElementById("icsSections"),
+  chainOfCommand: document.getElementById("chainOfCommand")
 };
+
+const CHAIN_OF_COMMAND_ORDER = [
+  ["Incident Commander", ["Incident Commander"]],
+  ["Deputy Incident Commander", ["Deputy Incident Commander"]],
+  ["Command Staff", ["Safety Officer", "Public Information Officer", "Liaison Officer"]],
+  ["Operations", ["Operations Section Chief", "Air Operations Branch Director", "Ground Branch Director"]],
+  ["Planning", ["Planning Section Chief", "Resources Unit Leader", "Situation Unit Leader"]],
+  ["Logistics", ["Logistics Section Chief", "Communications Unit Leader", "Medical Unit Leader"]],
+  ["Finance/Admin", ["Finance/Admin Section Chief", "Time Unit Leader", "Procurement Unit Leader"]]
+];
 
 document.addEventListener("DOMContentLoaded", () => {
   hydrateIncidentForm();
@@ -177,6 +188,7 @@ function renderIcsView() {
   });
 
   els.icsSections.innerHTML = "";
+  renderChainOfCommand();
   const sectionsToShow = SECTIONS.filter(section => people.some(person => person.section === section));
   if (!sectionsToShow.length) {
     const empty = document.createElement("div");
@@ -197,6 +209,17 @@ function renderIcsView() {
       tbody.appendChild(row);
     });
     els.icsSections.appendChild(wrap);
+  });
+}
+
+function renderChainOfCommand() {
+  els.chainOfCommand.innerHTML = "";
+  CHAIN_OF_COMMAND_ORDER.forEach(([slot, positions]) => {
+    const match = people.find(person => positions.some(position => person.position.toLowerCase() === position.toLowerCase()));
+    const card = document.createElement("article");
+    card.className = "chain-card";
+    card.innerHTML = `<p class="chain-slot">${escapeHtml(slot)}</p><p class="chain-person">${escapeHtml(match ? match.name : "Unassigned")}</p><p class="chain-role">${escapeHtml(match ? `${match.position} · ${match.assignment}` : "Add a matching position to auto-populate")}</p>`;
+    els.chainOfCommand.appendChild(card);
   });
 }
 
